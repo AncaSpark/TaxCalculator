@@ -1,0 +1,24 @@
+﻿@model TaxCalculator.Domain.Models.TaxCalculationResult
+
+<div class="container">
+    <form asp-action="Calculate" method="post">
+        <div class="form-group">
+            <label for="grossAnnualSalary">Gross Annual Salary:</label>
+            <input type="number" step="0.01" name="grossAnnualSalary" class="form-control"
+                   value="@(Model?.GrossAnnualSalary ?? 0)" required />
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </div>
+    </form>
+
+    @if (Model != null)
+    {
+        <div class="results mt-4">
+            <p>Gross Annual Salary: £@Model.GrossAnnualSalary.ToString("N2")</p>
+            <p>Gross Monthly Salary: £@Model.GrossMonthlySalary.ToString("N2")</p>
+            <p>Net Annual Salary: £@Model.NetAnnualSalary.ToString("N2")</p>
+            <p>Net Monthly Salary: £@Model.NetMonthlySalary.ToString("N2")</p>
+            <p>Annual Tax Paid: £@Model.AnnualTaxPaid.ToString("N2")</p>
+            <p>Monthly Tax Paid: £@Model.MonthlyTaxPaid.ToString("N2")</p>
+        </div>
+    }
+</div>
