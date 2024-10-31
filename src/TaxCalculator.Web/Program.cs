@@ -46,22 +46,6 @@ builder.Services.AddScoped<ITaxCalculatorService, TaxCalculatorService>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<TaxCalculatorDbContext>();
-        context.Database.Migrate();
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while migrating the database.");
-        throw;
-    }
-}
-
 
 // Configure error handling middleware
 app.UseExceptionHandler("/Error");
