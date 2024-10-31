@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using TaxCalculator.Domain.Exceptions;
 using TaxCalculator.Domain.Interfaces;
+using TaxCalculator.Web.Models;
 
 namespace TaxCalculator.Web.Controllers
 {
@@ -9,9 +11,7 @@ namespace TaxCalculator.Web.Controllers
         private readonly ITaxCalculatorService _taxCalculatorService;
         private readonly ILogger<TaxCalculatorController> _logger;
 
-        public TaxCalculatorController(
-            ITaxCalculatorService taxCalculatorService,
-            ILogger<TaxCalculatorController> logger)
+        public TaxCalculatorController(ITaxCalculatorService taxCalculatorService, ILogger<TaxCalculatorController> logger)
         {
             _taxCalculatorService = taxCalculatorService;
             _logger = logger;
@@ -44,6 +44,13 @@ namespace TaxCalculator.Web.Controllers
                 ModelState.AddModelError("", "An error occurred while calculating tax. Please try again later.");
                 return View("Index");
             }
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
