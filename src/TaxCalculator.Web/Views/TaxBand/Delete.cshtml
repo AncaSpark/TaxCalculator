@@ -1,0 +1,43 @@
+﻿@model TaxCalculator.Web.Models.TaxBandViewModel
+
+@{
+    ViewData["Title"] = "Delete Tax Band";
+}
+
+<h4>Delete Tax Band</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            Lower Limit
+        </dt>
+        <dd class="col-sm-10">
+            @Model.LowerLimit
+        </dd>
+        <dt class="col-sm-2">
+            Upper Limit
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UpperLimit
+        </dd>
+        <dt class="col-sm-2">
+            Tax Rate
+        </dt>
+        <dd class="col-sm-10">
+            @Model.TaxRate
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

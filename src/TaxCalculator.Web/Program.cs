@@ -5,7 +5,6 @@ using TaxCalculator.Domain.Interfaces;
 using TaxCalculator.Infrastructure.Data.Repository;
 using TaxCalculator.Infrastructure.Data;
 using TaxCalculator.Application.Services;
-using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +40,8 @@ builder.Services.AddDbContext<TaxCalculatorDbContext>(options =>
 
 builder.Services.AddScoped<ITaxBandRepository, TaxBandRepository>();
 
+builder.Services.AddScoped<ITaxBandService, TaxBandService>();
+
 builder.Services.AddScoped<ITaxCalculatorService, TaxCalculatorService>();
 
 
@@ -68,5 +69,10 @@ app.UseRouting();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=TaxCalculator}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "taxband",
+    pattern: "TaxBand/{action=Index}/{id?}",
+    defaults: new { controller = "TaxBand" });
 
 app.Run();

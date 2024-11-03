@@ -8,7 +8,11 @@ namespace TaxCalculator.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<TaxBand> builder)
         {
-            builder.ToTable("TaxBands");
+            builder.ToTable("TaxBands", t =>
+            {
+                // Ensure tax bands don't overlap
+                t.HasCheckConstraint("CK_TaxBands_Limits", "[LowerLimit] < [UpperLimit]");
+            });
 
             builder.HasKey(x => x.Id);
 
@@ -29,11 +33,6 @@ namespace TaxCalculator.Infrastructure.Data.Configurations
             // Index for faster queries
             builder.HasIndex(x => x.LowerLimit);
 
-            // Ensure tax bands don't overlap
-            builder.HasCheckConstraint(
-                "CK_TaxBand_Limits",
-                "[LowerLimit] >= 0 AND ([UpperLimit] IS NULL OR [UpperLimit] > [LowerLimit])"
-            );
         }
     }
 

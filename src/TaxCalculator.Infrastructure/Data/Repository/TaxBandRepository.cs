@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using TaxCalculator.Domain.Interfaces;
 using TaxCalculator.Domain.Models;
 
@@ -32,6 +31,20 @@ namespace TaxCalculator.Infrastructure.Data.Repository
             }
         }
 
+        public async Task<TaxBand?> GetTaxBandByIdAsync(int id)
+        {
+            try
+            {
+                var taxBand = await _context.TaxBands.FindAsync(id);
+                return taxBand;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An error occurred while retrieving the tax band with ID {id} from database.");
+                throw;
+            }   
+        }
+
         public async Task<TaxBand> AddTaxBandAsync(TaxBand taxBand)
         {
             try
@@ -42,7 +55,7 @@ namespace TaxCalculator.Infrastructure.Data.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error adding tax band to database");
+                _logger.LogError(ex, "An error occurred while adding tax band to database");
                 throw;
             }
         }
@@ -56,7 +69,25 @@ namespace TaxCalculator.Infrastructure.Data.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error updating tax band in database");
+                _logger.LogError(ex, $"An error occurred while updating the tax band with ID {taxBand.Id}.");
+                throw;
+            }
+        }
+
+        public async Task DeleteTaxBandAsync(int id)
+        {
+            try
+            {
+                var taxBand = await _context.TaxBands.FindAsync(id);
+                if (taxBand != null)
+                {
+                    _context.TaxBands.Remove(taxBand);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"An error occurred while deleting the tax band with ID {id}.");
                 throw;
             }
         }

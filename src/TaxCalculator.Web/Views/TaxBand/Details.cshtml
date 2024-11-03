@@ -1,0 +1,45 @@
+﻿@model TaxCalculator.Web.Models.TaxBandViewModel
+
+@{
+    ViewData["Title"] = "Tax Band Details";
+}
+
+<h4>Tax Band Details</h4>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    <div>
+        <h4>Tax Band</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Lower Limit
+            </dt>
+            <dd class="col-sm-10">
+                @Model.LowerLimit
+            </dd>
+            <dt class="col-sm-2">
+                Upper Limit
+            </dt>
+            <dd class="col-sm-10">
+                @Model.UpperLimit
+            </dd>
+            <dt class="col-sm-2">
+                Tax Rate
+            </dt>
+            <dd class="col-sm-10">
+                @Model.TaxRate
+            </dd>
+        </dl>
+    </div>
+    <div class="form-group mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-2">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+}

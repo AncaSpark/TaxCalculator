@@ -42,7 +42,7 @@ namespace TaxCalculator.Tests.Services
 
             // Assert
             Assert.AreEqual(grossAnnualSalary, result.GrossAnnualSalary);
-            Assert.AreEqual(1000m, result.AnnualTaxPaid); // Example expected tax calculation
+            Assert.AreEqual(1000m, result.AnnualTaxPaid);
         }
 
 
