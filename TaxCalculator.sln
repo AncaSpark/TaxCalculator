@@ -17,7 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Web", "src\Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Infrastructure", "src\TaxCalculator.Infrastructure\TaxCalculator.Infrastructure.csproj", "{E08BBC28-F11E-4C64-8EEE-837F47743748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalculator.Tests", "src\TaxCalculator.Tests\TaxCalculator.Tests.csproj", "{E5AAADEF-09F1-489A-9A3F-7EE3B64FA81B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalculator.Tests", "src\TaxCalculator.Tests\TaxCalculator.Tests.csproj", "{E5AAADEF-09F1-489A-9A3F-7EE3B64FA81B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BF5A972-D1C3-4A29-A525-DDD9055B307B}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Improvements.txt = Docs\Improvements.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
